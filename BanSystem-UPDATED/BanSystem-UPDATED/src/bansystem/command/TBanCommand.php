@@ -26,7 +26,8 @@ class TBanCommand extends Command {
                 return false;
             }
             $player = $sender->getServer()->getPlayer($args[0]);
-            $playerName = $args[0]; 
+            $playerName = $args[0];
+            $senderName = $sender->getName();
             $banList = $sender->getServer()->getNameBans();
             try {
                 if ($banList->isBanned($args[0])) {
