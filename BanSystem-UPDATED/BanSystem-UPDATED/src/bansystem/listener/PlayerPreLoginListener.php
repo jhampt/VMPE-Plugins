@@ -54,7 +54,7 @@ class PlayerPreLoginListener implements Listener {
             $entry = $banEntry[strtolower($player->getAddress())];
             if ($entry->getExpires() == null) {
                 $reason = $entry->getReason();
-                $senderName = $sender->getName();
+                $senderName = $event->getName();
                 if ($reason != null || $reason != "") {
                     $kickMessage = TextFormat::RED . "You are currently IP banned by §b$senderName §aReason: " . TextFormat::AQUA . $reason . TextFormat::RED . ".";
                 } else {
