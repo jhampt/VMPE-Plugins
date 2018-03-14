@@ -24,6 +24,7 @@ class MuteCommand extends Command {
                 return false;
             }
             $player = $sender->getServer()->getPlayer($args[0]);
+            $senderName = $sender->getName();
             $muteList = Manager::getNameMutes();
             if ($muteList->isBanned($args[0])) {
                 $sender->sendMessage(Translation::translate("playerAlreadyMuted"));
@@ -32,11 +33,11 @@ class MuteCommand extends Command {
             if (count($args) == 1) {
                 if ($player != null) {
                     $muteList->addBan($player->getName(), null, null, $sender->getName());
-                    $sender->getServer()->broadcastMessage(TextFormat::AQUA . $player->getName() . TextFormat::RED . " has been muted by $sender.");
-                    $player->sendMessage(TextFormat::RED . "You have been muted from our network\n§4Muted by: §bStaff.");
+                    $sender->getServer()->broadcastMessage(TextFormat::AQUA . $player->getName() . TextFormat::RED . " has been muted by $senderName.");
+                    $player->sendMessage(TextFormat::RED . "You have been muted from our network\n§4Muted by: §b$senderName");
                 } else {
                     $muteList->addBan($args[0], null, null, $sender->getName());
-                    $sender->getServer()->broadcastMessage(TextFormat::AQUA . $args[0] . TextFormat::RED . " has been muted from our network!\n§4Muted by: §bStaff.");
+                    $sender->getServer()->broadcastMessage(TextFormat::AQUA . $args[0] . TextFormat::RED . " has been muted from our network!\n§4Muted by: §b$senderName.");
                 }
             } else if (count($args) >= 2) {
                 $reason = "";
@@ -47,11 +48,11 @@ class MuteCommand extends Command {
                 $reason = substr($reason, 0, strlen($reason) - 1);
                 if ($player != null) {
                     $muteList->addBan($player->getName(), $reason, null, $sender->getName());
-                    $sender->getServer()->broadcastMessage(TextFormat::AQUA . $player->getName() . TextFormat::RED . " has been muted by $sender Reason: " . TextFormat::AQUA . $reason . TextFormat::RED . ".");
-                    $player->sendMessage(TextFormat::RED . "You have been muted from our network!\§4Muted by: §bStaff\n§5Reason: " . TextFormat::AQUA . $reason . TextFormat::RED . ".");
+                    $sender->getServer()->broadcastMessage(TextFormat::AQUA . $player->getName() . TextFormat::RED . " has been muted by $senderName Reason: " . TextFormat::AQUA . $reason . TextFormat::RED . ".");
+                    $player->sendMessage(TextFormat::RED . "You have been muted from our network!\§4Muted by: §b$senderName\n§5Reason: " . TextFormat::AQUA . $reason . TextFormat::RED . ".");
                 } else {
                     $muteList->addBan($args[0], $reason, null, $sender->getName());
-                    $sender->getServer()->broadcastMessage(TextFormat::AQUA . $args[0] . TextFormat::RED . " has been muted from our network\n§4Muted by: §bStaff\n§5Reason: " . TextFormat::AQUA . $reason . TextFormat::RED . ".");
+                    $sender->getServer()->broadcastMessage(TextFormat::AQUA . $args[0] . TextFormat::RED . " has been muted from our network\n§4Muted by: §b$senderName\n§5Reason: " . TextFormat::AQUA . $reason . TextFormat::RED . ".");
                 }
             }
         } else {
