@@ -12,7 +12,6 @@ class PlayerPreLoginListener implements Listener {
     
     public function onPlayerPreLogin(PlayerPreLoginEvent $event) {
         $player = $event->getPlayer();
-        $senderName = $event->getName();
         $banList = $player->getServer()->getNameBans();
         if ($banList->isBanned(strtolower($player->getName()))) {
             $kickMessage = "";
@@ -20,11 +19,10 @@ class PlayerPreLoginListener implements Listener {
             $entry = $banEntry[strtolower($player->getName())];
             if ($entry->getExpires() == null) {
                 $reason = $entry->getReason();
-                $senderName = $event->getName();
                 if ($reason != null || $reason != "") {
-                    $kickMessage = TextFormat::RED . "§cYou are currently banned. Banned by: §b$senderName §aReason: " . TextFormat::AQUA . $reason . TextFormat::RED . ".";
+                    $kickMessage = TextFormat::RED . "§cYou are currently banned. Banned by: Staff §aReason: " . TextFormat::AQUA . $reason . TextFormat::RED . ".";
                 } else {
-                    $kickMessage = TextFormat::RED . "You are currently banned by §b$senderName";
+                    $kickMessage = TextFormat::RED . "You are currently banned by Staff";
                 }
             } else {
                 $expiry = Countdown::expirationTimerToString($entry->getExpires(), new DateTime());
@@ -33,11 +31,10 @@ class PlayerPreLoginListener implements Listener {
                     return;
                 }
                 $banReason = $entry->getReason();
-                $senderName = $event->getName();
                 if ($banReason != null || $banReason != "") {
-                    $kickMessage = TextFormat::RED . "You are currently banned by: §a$senderName §bReason: " . TextFormat::LIGHT_PURPLE . $banReason . TextFormat::RED . " until " . TextFormat::AQUA . $expiry . TextFormat::RED . ".";
+                    $kickMessage = TextFormat::RED . "You are currently banned by: Staff §bReason: " . TextFormat::LIGHT_PURPLE . $banReason . TextFormat::RED . " until " . TextFormat::AQUA . $expiry . TextFormat::RED . ".";
                 } else {
-                    $kickMessage = TextFormat::RED . "You are currently banned by §a$senderName §buntil " . TextFormat::LIGHT_PURPLE . $expiry . TextFormat::RED . ".";
+                    $kickMessage = TextFormat::RED . "You are currently banned by Staff §buntil " . TextFormat::LIGHT_PURPLE . $expiry . TextFormat::RED . ".";
                 }
             }
             $player->close("", $kickMessage);
@@ -46,7 +43,6 @@ class PlayerPreLoginListener implements Listener {
     
     public function onPlayerPreLogin2(PlayerPreLoginEvent $event) {
         $player = $event->getPlayer();
-        $senderName = $event->getName();
         $banList = $player->getServer()->getIPBans();
         if ($banList->isBanned(strtolower($player->getAddress()))) {
             $kickMessage = "";
@@ -54,11 +50,10 @@ class PlayerPreLoginListener implements Listener {
             $entry = $banEntry[strtolower($player->getAddress())];
             if ($entry->getExpires() == null) {
                 $reason = $entry->getReason();
-                $senderName = $event->getName();
                 if ($reason != null || $reason != "") {
-                    $kickMessage = TextFormat::RED . "You are currently IP banned by §b$senderName §aReason: " . TextFormat::AQUA . $reason . TextFormat::RED . ".";
+                    $kickMessage = TextFormat::RED . "You are currently IP banned by Staff §aReason: " . TextFormat::AQUA . $reason . TextFormat::RED . ".";
                 } else {
-                    $kickMessage = TextFormat::RED . "You are currently IP banned by §b$senderName";
+                    $kickMessage = TextFormat::RED . "You are currently IP banned by §bStaff";
                 }
             } else {
                 $expiry = Countdown::expirationTimerToString($entry->getExpires(), new DateTime());
@@ -67,11 +62,10 @@ class PlayerPreLoginListener implements Listener {
                     return;
                 }
                 $banReason = $entry->getReason();
-                $senderName = $event->getName();
                 if ($banReason != null || $banReason != "") {
-                    $kickMessage = TextFormat::RED . "You are currently IP banned by §b$senderName §aReason: " . TextFormat::AQUA . $banReason . TextFormat::RED . " until " . TextFormat::AQUA . $expiry . TextFormat::RED . ".";
+                    $kickMessage = TextFormat::RED . "You are currently IP banned by §bStaff §aReason: " . TextFormat::AQUA . $banReason . TextFormat::RED . " until " . TextFormat::AQUA . $expiry . TextFormat::RED . ".";
                 } else {
-                    $kickMessage = TextFormat::RED . "You are currently IP banned by §b$senderName §auntil " . TextFormat::AQUA . $expiry . TextFormat::RED . ".";
+                    $kickMessage = TextFormat::RED . "You are currently IP banned by §bStaff §auntil " . TextFormat::AQUA . $expiry . TextFormat::RED . ".";
                 }
             }
             $player->close("", $kickMessage);
