@@ -25,6 +25,7 @@ class BanCommand extends Command {
             $player = $sender->getServer()->getPlayer($args[0]);
             $banList = $sender->getServer()->getNameBans();
             $playerName = $args[0];
+            $senderName = $sender->getName();
             if ($banList->isBanned($args[0])) {
                 $sender->sendMessage(Translation::translate("playerAlreadyBanned"));
                 return false;
@@ -32,12 +33,13 @@ class BanCommand extends Command {
             if (count($args) == 1) {
                 if ($player != null) {
                     $banList->addBan($player->getName(), null, null, $sender->getName());
-                    $player->kick(TextFormat::RED . "Your account has been suspended from our network!\n§4Banned by: §bStaff", false);
+                    $player->kick(TextFormat::RED . "Your account has been suspended from our network!\n§4Banned by: §b$senderName", false);
                     $playerName = $player->getName();
+                    $senderName = $sender->getName();
                 } else {
                     $banList->addBan($args[0], null, null, $sender->getName());
                 }
-                $sender->getServer()->broadcastMessage(TextFormat::AQUA . $playerName . TextFormat::RED . " has been suspended from our network!\n§4Banned by: §bStaff");
+                $sender->getServer()->broadcastMessage(TextFormat::AQUA . $playerName . TextFormat::RED . " has been suspended from our network!\n§4Banned by: §b$senderName");
             } else if (count($args) >= 2) {
                 $reason = "";
                 for ($i = 1; $i < count($args); $i++) {
@@ -47,12 +49,13 @@ class BanCommand extends Command {
                 $reason = substr($reason, 0, strlen($reason) - 1);
                 if ($player != null) {
                     $banList->addBan($player->getName(), $reason, null, $sender->getName());
-                    $player->kick(TextFormat::RED . "You have been suspended from our network!\n§4Banned by: §bStaff\n§5Reason: " . TextFormat::AQUA . $reason . TextFormat::RED . ".", false);
+                    $player->kick(TextFormat::RED . "You have been suspended from our network!\n§4Banned by: §b$senderName\n§5Reason: " . TextFormat::AQUA . $reason . TextFormat::RED . ".", false);
                     $playerName = $player->getName();
+                    $senderName = $sender->getName();
                 } else {
                     $banList->addBan($args[0], $reason, null, $sender->getName());
                 }
-                $sender->getServer()->broadcastMessage(TextFormat::AQUA . $playerName . TextFormat::RED . " has been suspended from our network!\n§4Banned by: §bStaff\n§5Reason: "
+                $sender->getServer()->broadcastMessage(TextFormat::AQUA . $playerName . TextFormat::RED . " has been suspended from our network!\n§4Banned by: §b$senderName\n§5Reason: "
                         . TextFormat::AQUA . $reason . TextFormat::RED . ".");
             }
         } else {
