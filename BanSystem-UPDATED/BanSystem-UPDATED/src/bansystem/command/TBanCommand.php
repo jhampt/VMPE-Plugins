@@ -41,7 +41,7 @@ class TBanCommand extends Command {
                         $playerName = $player->getName();
                         $senderName = $sender->getName();
                         $banList->addBan($player->getName(), null, $expiry->getDate(), $sender->getName());
-                        $player->kick(TextFormat::RED . "You have been temporarily suspended from our network\n§4Banned by: §bStaff"
+                        $player->kick(TextFormat::RED . "You have been temporarily suspended from our network\n§4Banned by: §b$senderName"
                                 . " §6your ban expires in " . TextFormat::AQUA . $expiryToString . TextFormat::RED . ".", false);
                     } else {
                         $banList->addBan($args[0], null, $expiry->getDate(), $sender->getName());
@@ -58,7 +58,7 @@ class TBanCommand extends Command {
                     $banReason = substr($banReason, 0, strlen($banReason) - 1);
                     if ($player != null) {
                         $banList->addBan($player->getName(), $banReason, $expiry->getDate(), $sender->getName());
-                        $player->kick(TextFormat::RED . "You have been temporarily banned from our network!\n§4Banned by: §bStaff\n§5Reason: " . TextFormat::AQUA . $banReason . TextFormat::RED . ","
+                        $player->kick(TextFormat::RED . "You have been temporarily banned from our network!\n§4Banned by: §b$senderName\n§5Reason: " . TextFormat::AQUA . $banReason . TextFormat::RED . ","
                                 . " §6Your ban expires in " . TextFormat::AQUA . $expiryToString . TextFormat::RED . ".", false);
                     } else {
                         $banList->addBan($args[0], $banReason, $expiry->getDate(), $sender->getName());
