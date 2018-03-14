@@ -11,9 +11,9 @@ use pocketmine\utils\TextFormat;
 class MuteCommand extends Command {
     
     public function __construct() {
-        parent::__construct("mute");
+        parent::__construct("pmute");
         $this->description = "Prevents the given player from sending public chat message.";
-        $this->usageMessage = "/mute <player> [reason...]";
+        $this->usageMessage = "/pmute <player> [reason...]";
         $this->setPermission("bansystem.command.mute");
     }
     
