@@ -16,14 +16,15 @@ class PlayerPreLoginListener implements Listener {
         $banList = $player->getServer()->getNameBans();
         if ($banList->isBanned(strtolower($player->getName()))) {
             $kickMessage = "";
+            $senderName = $entry->getName();
             $banEntry = $banList->getEntries();
             $entry = $banEntry[strtolower($player->getName())];
             if ($entry->getExpires() == null) {
                 $reason = $entry->getReason();
                 if ($reason != null || $reason != "") {
-                    $kickMessage = TextFormat::RED . "§cYou are currently banned. Banned by: $player §aReason: " . TextFormat::AQUA . $reason . TextFormat::RED . ".";
+                    $kickMessage = TextFormat::RED . "§cYou are currently banned. Banned by: $senderName §aReason: " . TextFormat::AQUA . $reason . TextFormat::RED . ".";
                 } else {
-                    $kickMessage = TextFormat::RED . "You are currently banned by $player";
+                    $kickMessage = TextFormat::RED . "You are currently banned by $senderName";
                 }
             } else {
                 $expiry = Countdown::expirationTimerToString($entry->getExpires(), new DateTime());
@@ -33,9 +34,9 @@ class PlayerPreLoginListener implements Listener {
                 }
                 $banReason = $entry->getReason();
                 if ($banReason != null || $banReason != "") {
-                    $kickMessage = TextFormat::RED . "You are currently banned by: $player §bReason: " . TextFormat::LIGHT_PURPLE . $banReason . TextFormat::RED . " until " . TextFormat::AQUA . $expiry . TextFormat::RED . ".";
+                    $kickMessage = TextFormat::RED . "You are currently banned by: $senderName §bReason: " . TextFormat::LIGHT_PURPLE . $banReason . TextFormat::RED . " until " . TextFormat::AQUA . $expiry . TextFormat::RED . ".";
                 } else {
-                    $kickMessage = TextFormat::RED . "You are currently banned by $player §buntil " . TextFormat::LIGHT_PURPLE . $expiry . TextFormat::RED . ".";
+                    $kickMessage = TextFormat::RED . "You are currently banned by $senderName §buntil " . TextFormat::LIGHT_PURPLE . $expiry . TextFormat::RED . ".";
                 }
             }
             $player->close("", $kickMessage);
