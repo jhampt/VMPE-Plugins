@@ -22,7 +22,7 @@ class PlayerPreLoginListener implements Listener {
             if ($entry->getExpires() == null) {
                 $reason = $entry->getReason();
                 if ($reason != null || $reason != "") {
-                    $kickMessage = TextFormat::RED . "§cYou are currently banned. Banned by: $senderName §aReason: " . TextFormat::AQUA . $reason . TextFormat::RED . ".";
+                    $kickMessage = TextFormat::RED . "§7[§6Void§bDeath§cBan§7]\n§aYou are still death banned. Reason: " . TextFormat::AQUA . $reason . TextFormat::RED . ".";
                 } else {
                     $kickMessage = TextFormat::RED . "You are currently banned by $senderName";
                 }
@@ -34,9 +34,9 @@ class PlayerPreLoginListener implements Listener {
                 }
                 $banReason = $entry->getReason();
                 if ($banReason != null || $banReason != "") {
-                    $kickMessage = TextFormat::RED . "You are currently banned by: $senderName §bReason: " . TextFormat::LIGHT_PURPLE . $banReason . TextFormat::RED . " until " . TextFormat::AQUA . $expiry . TextFormat::RED . ".";
+                    $kickMessage = TextFormat::RED . "§7[§6Void§bDeath§cBan§7]\n§aYou are still death banned. Reason: " . TextFormat::LIGHT_PURPLE . $banReason . TextFormat::RED . " §bYou will be able to play again in " . TextFormat::AQUA . $expiry . TextFormat::RED . ".";
                 } else {
-                    $kickMessage = TextFormat::RED . "You are currently banned by $senderName §buntil " . TextFormat::LIGHT_PURPLE . $expiry . TextFormat::RED . ".";
+                    $kickMessage = TextFormat::RED . "§7[§6Void§bDeath§cBan§7]\n§aYou are still death banned. §bYou will be able to play again in " . TextFormat::LIGHT_PURPLE . $expiry . TextFormat::RED . ".";
                 }
             }
             $player->close("", $kickMessage);
