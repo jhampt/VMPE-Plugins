@@ -25,7 +25,7 @@ class BanSystem extends PluginBase {
     }
     
     private function initializeCommands() {
-        $commands = array("deathban");
+        $commands = array("deathban", "pardon", "banlist");
         for ($i = 0; $i < count($commands); $i++) {
             $this->removeCommand($commands[$i]);
         }
