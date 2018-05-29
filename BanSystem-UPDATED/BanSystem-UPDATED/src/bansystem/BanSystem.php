@@ -27,7 +27,7 @@ class BanSystem extends PluginBase {
         }
         $commandMap = $this->getServer()->getCommandMap();
         $commandMap->registerAll("bansystem", array(
-            new DeathBanCommand();
+            new DeathBanCommand()
         ));
     }
     
