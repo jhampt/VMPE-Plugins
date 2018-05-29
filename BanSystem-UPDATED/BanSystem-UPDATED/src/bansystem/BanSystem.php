@@ -2,7 +2,7 @@
 
 namespace bansystem;
 
-use bansystem\command\DeathbanCommand;
+use bansystem\command\DeathBanCommand;
 use pocketmine\event\Listener;
 use pocketmine\permission\Permission;
 use pocketmine\plugin\Plugin;
