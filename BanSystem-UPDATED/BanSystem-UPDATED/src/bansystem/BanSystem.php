@@ -40,23 +40,23 @@ class BanSystem extends PluginBase {
         }
     }
     /**
--     * 
--     * @param Plugin $plugin
--     * @param Listener[] $listeners
--     */
--    protected function registerListeners(Plugin $plugin, array $listeners) {
--        foreach ($listeners as $listener) {
--            $this->getServer()->getPluginManager()->registerEvents($listener, $plugin);
--        }
--    }
--    
--    private function initializeListeners() {
--        $this->registerListeners($this, array(
--            new PlayerChatListener(),
--            new PlayerCommandPreproccessListener(),
--            new PlayerPreLoginListener()
--        ));
--    }
+     * 
+     * @param Plugin $plugin
+     * @param Listener[] $listeners
+     */
+    protected function registerListeners(Plugin $plugin, array $listeners) {
+        foreach ($listeners as $listener) {
+            $this->getServer()->getPluginManager()->registerEvents($listener, $plugin);
+        }
+    }
+    
+    private function initializeListeners() {
+        $this->registerListeners($this, array(
+            new PlayerChatListener(),
+            new PlayerCommandPreproccessListener(),
+            new PlayerPreLoginListener()
+        ));
+    }
     private function initializeFiles() {
         @mkdir($this->getDataFolder());
         if (!(file_exists("muted-players.txt") && is_file("muted-players.txt"))) {
