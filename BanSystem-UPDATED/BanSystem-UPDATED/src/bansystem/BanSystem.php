@@ -5,7 +5,9 @@ namespace bansystem;
 use bansystem\command\DeathBanCommand;
 use pocketmine\event\Listener;
 use pocketmine\permission\Permission;
-use bansystem\listener\{PlayerPreLoginListener, PlayerCommandPreproccessListener, PlayerChatListener};
+use bansystem\listener\PluginChatListener;
+use bansystem\listener\PlayerCommandPreproccessListener;
+use bansystem\listener\PlayerPreLoginListener;
 use pocketmine\plugin\{Plugin, PluginBase};
 
 class BanSystem extends PluginBase {
