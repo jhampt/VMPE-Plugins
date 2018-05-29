@@ -1,7 +1,5 @@
 <?php
-
 namespace bansystem\command;
-
 use bansystem\translation\Translation;
 use bansystem\util\date\Countdown;
 use DateTime;
@@ -9,7 +7,6 @@ use InvalidArgumentException;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\utils\TextFormat;
-
 class TBanCommand extends Command {
     
     public function __construct() {
@@ -59,7 +56,7 @@ class TBanCommand extends Command {
                     if ($player != null) {
                         $banList->addBan($player->getName(), $banReason, $expiry->getDate(), $sender->getName());
                         $player->kick(TextFormat::RED . "§7[§6Void§bDeath§cBan§7]\n§aYou are death banned because you died!",
-                                . " §6You will be unbanned in " . TextFormat::AQUA . $expiryToString . TextFormat::RED . ".", false);
+                                " §6You will be unbanned in " . TextFormat::AQUA . $expiryToString . TextFormat::RED . ".", false);
                     } else {
                         $banList->addBan($args[0], $banReason, $expiry->getDate(), $sender->getName());
                     }
