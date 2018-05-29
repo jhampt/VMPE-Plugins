@@ -1,7 +1,7 @@
 
-name: VMPE-Action
+name: VMDeathban
 main: bansystem\BanSystem
-version: 3.0.0-B1
+version: 1.0.0-BETA
 author: VMPE Development Team
 api: [3.0.0-ALPHA10, 3.0.0-ALPHA11, 3.0.0-ALPHA12]
 description: A ban system for Pocketmine only, running Latest PMMP-Builds.
