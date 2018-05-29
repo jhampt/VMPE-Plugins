@@ -77,7 +77,7 @@ class BanSystem extends PluginBase {
     
     private function initializePermissions() {
         $this->addPermissions(array(
-            new Permission("deathban.command", "Allows the player to temporarily prevent the given player to use this server.", Permission::DEFAULT_OP),
+            new Permission("", "Allows the player to temporarily prevent the given player to use this server.", Permission::DEFAULT_OP),
           
         ));
     }
