@@ -7,7 +7,7 @@ use bansystem\command\PardonCommand;
 use bansystem\command\BanListCommand;
 use pocketmine\event\Listener;
 use pocketmine\permission\Permission;
-use bansystem\listener\PluginChatListener;
+use bansystem\listener\PlayerChatListener;
 use bansystem\listener\PlayerCommandPreproccessListener;
 use bansystem\listener\PlayerPreLoginListener;
 use pocketmine\plugin\{Plugin, PluginBase};
