@@ -39,26 +39,6 @@ class BanSystem extends PluginBase {
             $this->getServer()->getPluginManager()->addPermission($permission);
         }
     }
-    
-    /**
-     * 
-     * @param Plugin $plugin
-     * @param Listener[] $listeners
-     */
-    protected function registerListeners(Plugin $plugin, array $listeners) {
-        foreach ($listeners as $listener) {
-            $this->getServer()->getPluginManager()->registerEvents($listener, $plugin);
-        }
-    }
-    
-    private function initializeListeners() {
-        $this->registerListeners($this, array(
-            new PlayerChatListener(),
-            new PlayerCommandPreproccessListener(),
-            new PlayerPreLoginListener()
-        ));
-    }
-    
     private function initializeFiles() {
         @mkdir($this->getDataFolder());
         if (!(file_exists("muted-players.txt") && is_file("muted-players.txt"))) {
@@ -98,7 +78,6 @@ class BanSystem extends PluginBase {
     public function onEnable() {
         $this->getLogger()->info("VMPE-Action is now enabled. As far as we know, there's no errors on-enable.");
         $this->initializeCommands();
-        $this->initializeListeners();
         $this->initializePermissions();
         $this->initializeFiles();
         $this->removeBanExpired();
