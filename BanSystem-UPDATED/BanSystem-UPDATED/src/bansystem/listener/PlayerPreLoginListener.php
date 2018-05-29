@@ -16,7 +16,6 @@ class PlayerPreLoginListener implements Listener {
         $banList = $player->getServer()->getNameBans();
         if ($banList->isBanned(strtolower($player->getName()))) {
             $kickMessage = "";
-            $senderName = $entry->getName();
             $banEntry = $banList->getEntries();
             $entry = $banEntry[strtolower($player->getName())];
             if ($entry->getExpires() == null) {
