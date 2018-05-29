@@ -13,10 +13,10 @@ use pocketmine\utils\TextFormat;
 class TBanCommand extends Command {
     
     public function __construct() {
-        parent::__construct("tban");
+        parent::__construct("deathban");
         $this->description = "Temporarily prevents an given player from using this server.";
-        $this->usageMessage = "/tban <player> <timeFormat> [reason...]";
-        $this->setPermission("bansystem.command.tempban");
+        $this->usageMessage = "/deathban <player> <timeFormat> [reason...]";
+        $this->setPermission("");
     }
     
     public function execute(CommandSender $sender, string $commandLabel, array $args) {
@@ -41,13 +41,13 @@ class TBanCommand extends Command {
                         $playerName = $player->getName();
                         $senderName = $sender->getName();
                         $banList->addBan($player->getName(), null, $expiry->getDate(), $sender->getName());
-                        $player->kick(TextFormat::RED . "You have been temporarily suspended from our network\n§4Banned by: §b$senderName"
-                                . " §6your ban expires in " . TextFormat::AQUA . $expiryToString . TextFormat::RED . ".", false);
+                        $player->kick(TextFormat::RED . "§7[§6Void§bDeath§cBan§7]\n§aYou are death banned because you died!"
+                                . " §6You will be unbanned in " . TextFormat::AQUA . $expiryToString . TextFormat::RED . ".", false);
                     } else {
                         $banList->addBan($args[0], null, $expiry->getDate(), $sender->getName());
                     }
                     $sender->getServer()->broadcastMessage(TextFormat::AQUA . $playerName
-                            . TextFormat::RED . " has been temporarily banned from our network\n§4Banned by: §b$senderName §6Banned until " . TextFormat::AQUA . $expiryToString . TextFormat::RED . ".");
+                            . TextFormat::RED . " §cdied and is now death banned until " . TextFormat::AQUA . $expiryToString . TextFormat::RED . ".");
                     
                 } else if (count($args) >= 3) {
                     $banReason = "";
@@ -58,13 +58,13 @@ class TBanCommand extends Command {
                     $banReason = substr($banReason, 0, strlen($banReason) - 1);
                     if ($player != null) {
                         $banList->addBan($player->getName(), $banReason, $expiry->getDate(), $sender->getName());
-                        $player->kick(TextFormat::RED . "You have been temporarily banned from our network!\n§4Banned by: §b$senderName\n§5Reason: " . TextFormat::AQUA . $banReason . TextFormat::RED . ","
-                                . " §6Your ban expires in " . TextFormat::AQUA . $expiryToString . TextFormat::RED . ".", false);
+                        $player->kick(TextFormat::RED . "§7[§6Void§bDeath§cBan§7]\n§aYou are death banned because you died!",
+                                . " §6You will be unbanned in " . TextFormat::AQUA . $expiryToString . TextFormat::RED . ".", false);
                     } else {
                         $banList->addBan($args[0], $banReason, $expiry->getDate(), $sender->getName());
                     }
                     $sender->getServer()->broadcastMessage(TextFormat::AQUA . $playerName
-                            . TextFormat::RED . " has been temporarily banned from our network\n§4Banned by: §b$senderName\n§5Reason: " . TextFormat::AQUA . $banReason . TextFormat::RED . " §6Your ban expires in " . TextFormat::AQUA . $expiryToString . TextFormat::RED . ".");
+                            . TextFormat::RED . " §cdied and is now death banned until " . TextFormat::AQUA . $expiryToString . TextFormat::RED . ".");
                 }
             } catch (InvalidArgumentException $e) {
                 $sender->sendMessage(TextFormat::RED . $e->getMessage());
