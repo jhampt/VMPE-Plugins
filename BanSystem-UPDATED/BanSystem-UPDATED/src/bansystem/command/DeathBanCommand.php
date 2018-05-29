@@ -7,7 +7,7 @@ use InvalidArgumentException;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\utils\TextFormat;
-class TBanCommand extends Command {
+class DeathBanCommand extends Command {
     
     public function __construct() {
         parent::__construct("deathban");
