@@ -3,6 +3,8 @@
 namespace bansystem;
 
 use bansystem\command\DeathBanCommand;
+use bansystem\command\PardonCommand;
+use bansystem\command\BanListCommand;
 use pocketmine\event\Listener;
 use pocketmine\permission\Permission;
 use bansystem\listener\PluginChatListener;
@@ -29,7 +31,9 @@ class BanSystem extends PluginBase {
         }
         $commandMap = $this->getServer()->getCommandMap();
         $commandMap->registerAll("bansystem", array(
-            new DeathBanCommand()
+            new DeathBanCommand(),
+            new PardonCommand(),
+            new BanListCommand()
         ));
     }
     
