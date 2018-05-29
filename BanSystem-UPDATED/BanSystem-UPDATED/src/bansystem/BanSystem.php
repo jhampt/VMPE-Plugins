@@ -5,8 +5,8 @@ namespace bansystem;
 use bansystem\command\DeathBanCommand;
 use pocketmine\event\Listener;
 use pocketmine\permission\Permission;
-use pocketmine\plugin\Plugin;
-use pocketmine\plugin\PluginBase;
+use pocketmine\listener\{PlayerPreLoginListener, PlayerCommandPreproccessListener, PlayerChatListener};
+use pocketmine\plugin\{Plugin, PluginBase};
 
 class BanSystem extends PluginBase {
     
@@ -39,6 +39,24 @@ class BanSystem extends PluginBase {
             $this->getServer()->getPluginManager()->addPermission($permission);
         }
     }
+    /**
+-     * 
+-     * @param Plugin $plugin
+-     * @param Listener[] $listeners
+-     */
+-    protected function registerListeners(Plugin $plugin, array $listeners) {
+-        foreach ($listeners as $listener) {
+-            $this->getServer()->getPluginManager()->registerEvents($listener, $plugin);
+-        }
+-    }
+-    
+-    private function initializeListeners() {
+-        $this->registerListeners($this, array(
+-            new PlayerChatListener(),
+-            new PlayerCommandPreproccessListener(),
+-            new PlayerPreLoginListener()
+-        ));
+-    }
     private function initializeFiles() {
         @mkdir($this->getDataFolder());
         if (!(file_exists("muted-players.txt") && is_file("muted-players.txt"))) {
