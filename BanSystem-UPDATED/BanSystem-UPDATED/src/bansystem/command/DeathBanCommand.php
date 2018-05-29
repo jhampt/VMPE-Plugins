@@ -54,8 +54,7 @@ class DeathBanCommand extends Command {
                     $banReason = substr($banReason, 0, strlen($banReason) - 1);
                     if ($player != null) {
                         $banList->addBan($player->getName(), $banReason, $expiry->getDate(), $sender->getName());
-                        $player->kick(TextFormat::RED . "§7[§6Void§bDeath§cBan§7]\n§aYou are death banned because you died!",
-                                " §6You will be unbanned in " . TextFormat::AQUA . $expiryToString . TextFormat::RED . ".", false);
+                        $player->kick(TextFormat::RED . "§7[§6Void§bDeath§cBan§7]\n§aYou are death banned because you died!\n§6You will be unbanned in " . TextFormat::AQUA . $expiryToString . TextFormat::RED . ".", false);
                     } else {
                         $banList->addBan($args[0], $banReason, $expiry->getDate(), $sender->getName());
                     }
