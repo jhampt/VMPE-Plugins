@@ -13,7 +13,7 @@ class DeathBanCommand extends Command {
         parent::__construct("deathban");
         $this->description = "Temporarily prevents an given player from using this server.";
         $this->usageMessage = "/deathban <player> <timeFormat> [reason...]";
-        $this->setPermission("");
+        $this->setPermission("deathban.command");
     }
     
     public function execute(CommandSender $sender, string $commandLabel, array $args) {
